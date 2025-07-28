@@ -1,2 +1,2 @@
 # pedeai-auth
-Serviço de autenticaao e gerenciamento de usuarios do PedeAí
+Serviço de autenticação e gerenciamento de usuarios do PedeAí
