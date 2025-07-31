@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Usuário API
+  version: 1.0.0
+  description: API para gerenciar usuários
+servers:
+  - url: http://localhost:8080/
+    description: Servidor local
+tags:
+  - name: Usuários
+    description: Operações relacionadas a usuários
+paths:
+  /usuarios:
+    post:
+      tags:
+        - Usuários
+      summary: Cria um novo usuário
+      operationId: criarUsuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '201':
+          description: Usuário criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+  /usuarios/{id}:
+    get:
+      tags:
+        - Usuários
+      summary: Obtém um usuário por ID
+      operationId: obterUsuarioPorId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: long
+      responses:
+        '200':
+          description: Usuário encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '404':
+          description: Usuário não encontrado
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: long
+          example: 1
+        login:
+          type: string
+          maxLength: 50
+          example: leonart
+        email:
+          type: string
+          maxLength: 100
+          example: leonart@email.com
+        senha:
+          type: string
+          maxLength: 16
+          example: senha123
+        nome:
+          type: string
+          maxLength: 100
+          example: Leonart Lima
+        dataDaUltimaAlteracao:
+          type: string
+          maxLength: 20
+          format: date-time
+          example: 2024-06-01T12:00:00
+        dataDeCriacao:
+          type: string
+          maxLength: 20
+          format: date-time
+          example: 2024-05-01T09:00:00
+        endereco:
+          type: string
+          maxLength: 100
+          example: Rua Exemplo, 123
+      required:
+        - login
+        - email
+        - senha
+        - nome
+        - dataDaUltimaAlteracao
+        - dataDeCriacao
+        - endereco
