@@ -7,13 +7,13 @@ servers:
   - url: http://localhost:8080/
     description: Servidor local
 tags:
-  - name: Usuários
+  - name: Usuário
     description: Operações relacionadas a usuários
 paths:
   /usuarios:
     post:
       tags:
-        - Usuários
+        - Usuário
       summary: Cria um novo usuário
       operationId: criarUsuario
       requestBody:
@@ -32,7 +32,7 @@ paths:
   /usuarios/{id}:
     get:
       tags:
-        - Usuários
+        - Usuário
       summary: Obtém um usuário por ID
       operationId: obterUsuarioPorId
       parameters:
@@ -50,6 +50,51 @@ paths:
                 $ref: '#/components/schemas/Usuario'
         '404':
           description: Usuário não encontrado
+    put:
+      summary: Alterar dados do usuário
+      operationId: atualizarUsuario
+      tags:
+        - Usuário
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: long
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioUpdate'
+      responses:
+        '200':
+          description: Usuário atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioUpdate'
+  /usuarios/{id}/senha:
+    put:
+      summary: Trocar senha do usuário
+      operationId: trocarSenhaUsuario
+      tags:
+        - Usuário
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: long
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrocaSenha'
+      responses:
+        '200':
+          description: Senha alterada
 components:
   schemas:
     Usuario:
@@ -77,12 +122,10 @@ components:
         dataDaUltimaAlteracao:
           type: string
           maxLength: 20
-          format: date-time
           example: 2024-06-01T12:00:00
         dataDeCriacao:
           type: string
           maxLength: 20
-          format: date-time
           example: 2024-05-01T09:00:00
         endereco:
           type: string
@@ -96,3 +139,21 @@ components:
         - dataDaUltimaAlteracao
         - dataDeCriacao
         - endereco
+    UsuarioUpdate:
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        login:
+          type: string
+        endereco:
+          type: string
+    TrocaSenha:
+      type: object
+      properties:
+        senhaAtual:
+          type: string
+        novaSenha:
+          type: string

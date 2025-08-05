@@ -2,6 +2,7 @@ package com.leonart.pedeaiauth.controller;
 
 import com.leonart.pedeaiauth.api.UsuariosApi;
 import com.leonart.pedeaiauth.dto.UsuarioDTO;
+import com.leonart.pedeaiauth.dto.UsuarioUpdateDTO;
 import com.leonart.pedeaiauth.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,15 @@ public class UsuarioController implements UsuariosApi {
         usuarioService.criarUsuario(body);
 
         return ResponseEntity.status(201).body(body);
+    }
+
+
+    public ResponseEntity<UsuarioUpdateDTO> atualizarUsuario(
+            Long id,
+            UsuarioUpdateDTO usuarioUpdateDTO) {
+        usuarioService.alterarUsuario(id, usuarioUpdateDTO);
+
+        return ResponseEntity.status(201).body(usuarioUpdateDTO);
     }
 
 }

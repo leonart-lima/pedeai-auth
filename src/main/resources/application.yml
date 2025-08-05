@@ -13,6 +13,10 @@ spring:
   h2:
     console:
       enabled: true
+  security:
+    user:
+      name: admin
+      password: '{bcrypt}$2a$10$wH6Qw1Qw1Qw1Qw1Qw1Qw1uQw1Qw1Qw1Qw1Qw1Qw1Qw1Qw1Qw1'
 
 logging:
   level:

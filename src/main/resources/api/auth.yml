@@ -6,6 +6,8 @@ paths:
   /auth/login:
     post:
       summary: Realiza login do usuário
+      tags:
+        - Autenticação
       requestBody:
         required: true
         content:
