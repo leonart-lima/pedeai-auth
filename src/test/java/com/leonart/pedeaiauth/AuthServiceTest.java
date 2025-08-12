@@ -16,7 +16,6 @@ class AuthServiceTest {
     void autenticarUsuarioDeveLancarExcecaoParaCredenciaisInvalidas() {
         UsuarioRepository repo = mock(UsuarioRepository.class);
         AuthService service = new AuthService(repo);
-        // Mock do repository e usuário necessário aquusuarioRepositoryi
         assertThrows(UsuarioSenhaNaoExisteException.class, () -> {
             service.authenticate("admin", "senhaErrada");
         });
