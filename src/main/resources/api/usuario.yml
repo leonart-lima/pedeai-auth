@@ -131,6 +131,12 @@ components:
           type: string
           maxLength: 100
           example: Rua Exemplo, 123
+        role:
+          type: string
+          enum:
+            - CLIENTE
+            - DONO
+            - ADMIN
       required:
         - login
         - email

@@ -39,5 +39,8 @@ public class Usuario{
     @Column(name = "ENDERECO", nullable = false, length = 100)
     private String endereco;
 
+    @Column(name = "ROLE", nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }

@@ -17,6 +17,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions().disable()) // Necessário para o H2 Console funcionar
                 .authorizeHttpRequests(authz -> authz
                         .anyRequest().permitAll()
                 );

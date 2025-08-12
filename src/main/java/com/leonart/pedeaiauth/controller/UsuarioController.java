@@ -1,6 +1,7 @@
 package com.leonart.pedeaiauth.controller;
 
 import com.leonart.pedeaiauth.api.UsuariosApi;
+import com.leonart.pedeaiauth.dto.TrocaSenhaDTO;
 import com.leonart.pedeaiauth.dto.UsuarioDTO;
 import com.leonart.pedeaiauth.dto.UsuarioUpdateDTO;
 import com.leonart.pedeaiauth.service.UsuarioService;
@@ -40,4 +41,11 @@ public class UsuarioController implements UsuariosApi {
         return ResponseEntity.status(201).body(usuarioUpdateDTO);
     }
 
+
+    public ResponseEntity<Void> trocarSenhaUsuario(
+            Long id,
+            TrocaSenhaDTO body) {
+        usuarioService.trocarSenha(id, body.getSenhaAtual(), body.getNovaSenha());
+        return ResponseEntity.ok().build();
+    }
 }

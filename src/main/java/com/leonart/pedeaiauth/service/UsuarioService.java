@@ -5,6 +5,7 @@ import com.leonart.pedeaiauth.dto.UsuarioDTO;
 import com.leonart.pedeaiauth.dto.UsuarioUpdateDTO;
 import com.leonart.pedeaiauth.exception.EmailJaCadastradoException;
 import com.leonart.pedeaiauth.exception.UsuarioNaoEncontradoException;
+import com.leonart.pedeaiauth.exception.UsuarioSenhaNaoExisteException;
 import com.leonart.pedeaiauth.mapper.UsuarioMapper;
 import com.leonart.pedeaiauth.repository.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,7 @@ public class UsuarioService {
         usuario.setDataDeCriacao(LocalDateTime.now());
         usuario.setDataDaUltimaAlteracao(LocalDateTime.now());
         usuario.setEndereco(usuarioDTO.getEndereco());
+        usuario.setRole(com.leonart.pedeaiauth.domain.Role.valueOf(usuarioDTO.getRole().name()));
 
         usuarioRepository.save(usuario);
     }
@@ -60,6 +62,16 @@ public class UsuarioService {
         usuario.setLogin(usuarioUpdateDTO.getLogin());
         usuario.setEndereco(usuarioUpdateDTO.getEndereco());
 
+        usuarioRepository.save(usuario);
+    }
+
+    public void trocarSenha(Long id, String senhaAtual, String novaSenha) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado com ID: " + id));
+        if (!passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
+            throw new UsuarioSenhaNaoExisteException();
+        }
+        usuario.setSenha(passwordEncoder.encode(novaSenha));
         usuarioRepository.save(usuario);
     }
 }

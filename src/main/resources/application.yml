@@ -13,6 +13,8 @@ spring:
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: true
   security:
     user:
       name: admin
@@ -20,8 +22,8 @@ spring:
 
 logging:
   level:
-    org.springframework: DEBUG
-    com.leonart: DEBUG
+    org.springframework: INFO
+    com.leonart: INFO
 
 springdoc:
   api-docs:

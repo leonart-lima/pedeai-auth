@@ -11,6 +11,9 @@ public class UsuarioMapper {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setId(usuario.getId());
         dto.setNome(usuario.getNome());
+        dto.setLogin("******");// Oculta o login por motivos de segurança
+        dto.setSenha("******");// Oculta a senha por motivos de segurança
+        dto.setRole(UsuarioDTO.RoleEnum.valueOf(usuario.getRole().name()));
         dto.setEmail(usuario.getEmail());
         dto.setEndereco(usuario.getEndereco());
         dto.setDataDeCriacao(usuario.getDataDeCriacao().toString());
