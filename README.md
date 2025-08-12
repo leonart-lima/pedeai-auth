@@ -28,3 +28,10 @@ mvn clean package
 # Executar com Docker
 docker build -t pedeai-auth .
 docker run -p 8080:8080 pedeai-auth
+
+# Executar baixando a imagem diretamente do Docker Hub
+docker login
+docker compose up –d 
+
+A aplicação será acessível pela URL:  
+ http://localhost:8080/ 
