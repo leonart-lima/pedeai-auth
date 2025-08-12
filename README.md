@@ -19,6 +19,9 @@ Serviço de autenticação e gerenciamento de usuários desenvolvido em Java com
 - **Documentação automática**: Disponível via Swagger UI.
 - **Testes manuais e automatizados**: Cobrem inicialização, endpoints, autenticação, integração e tratamento de erros.
 
+## Contrato para teste
+https://leonart-lima-2651616.postman.co/workspace/Leonart-Lima's-Workspace~9d7d58fa-4d8d-481b-8282-8acb610c77a4/collection/47207490-443aa3ba-f873-47e4-8126-3e171b586e9a?action=share&source=copy-link&creator=47207490
+
 ## Como executar
 
 ```bash
@@ -34,4 +37,6 @@ docker login
 docker compose up –d 
 
 A aplicação será acessível pela URL:  
- http://localhost:8080/ 
+ http://localhost:8080/
+
+
