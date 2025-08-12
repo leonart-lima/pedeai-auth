@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    @Autowired
+
     UsuarioRepository usuarioRepository;
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    public AuthService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     public String authenticate(String username, String password) {
         Usuario usuario = usuarioRepository.findByLogin(username)
@@ -22,7 +27,6 @@ public class AuthService {
         if (!encoder.matches(password, usuario.getSenha())) {
             throw new UsuarioSenhaNaoExisteException();
         }
-
         return "Login realizado com sucesso";
     }
 }
